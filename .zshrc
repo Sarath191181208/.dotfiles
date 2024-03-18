@@ -1,4 +1,3 @@
-## Path section
 # Set $PATH if ~/.local/bin exist
 if [ -d "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH
@@ -8,6 +7,7 @@ export ORACLE_HOME=/opt/oracle/product/18c/dbhomeXE
 export ORACLE_SID=XE
 export EDITOR=nvim
 export PATH=$PATH:$ORACLE_HOME/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 
 function sqlplus2 {
         socat READLINE,history=$HOME/.sqlplus_history EXEC:"$ORACLE_HOME/bin/sqlplus $(echo $@ | sed 's/\([\:]\)/\\\1/g')",pty,setsid,ctty
