@@ -20,7 +20,7 @@ set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Hon
 
 ### Applications: ###
 
-set $preferredTerminalEmulator /usr/bin/kitty
+set $preferredTerminalEmulator /usr/bin/i3-sensible-terminal
 set $preferredBrowser /usr/bin/firedragon
 set $preferredFileManager /usr/bin/thunar
 set $preferredMailClient /usr/bin/geary
@@ -57,20 +57,20 @@ floating_modifier $super
 #autostart
 exec --no-startup-id ~/.fehbg
 # exec --no-startup-id xsettingsd &
-#exec --no-startup-id pasystray
+# exec --no-startup-id pasystray
 # exec --no-startup-id conky
 # exec --no-startup-id conky -c ~/.config/conky/conky-shcts
-exec --no-startup-id copyq
+# exec --no-startup-id copyq
 # exec --no-startup-id dunst
 # exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 # exec --no-startup-id desktop-items
-# exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 # exec --no-startup-id pamac-tray
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id xfce4-power-manager
 # exec_always --no-startup-id ff-theme-util
-# exec_always --no-startup-id setcursor
-#exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
+exec_always --no-startup-id setcursor
+# exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
 exec_always --no-startup-id numlockx on
 # exec blueberry-tray
 # exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
