@@ -21,7 +21,7 @@ set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Hon
 ### Applications: ###
 
 set $preferredTerminalEmulator /usr/bin/i3-sensible-terminal
-set $preferredBrowser /usr/bin/firedragon
+set $preferredBrowser /usr/bin/google-chrome-stable
 set $preferredFileManager /usr/bin/thunar
 set $preferredMailClient /usr/bin/geary
 set $preferredTextEditor /usr/bin/geany
@@ -46,6 +46,7 @@ bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 # - Terminal can also be started using their individual keybindings
 
 bindsym $super+Return exec $preferredTerminalEmulator
+bindsym $super+b exec $preferredBrowser
 bindsym $super+t exec kitty
 
 # set font
@@ -71,7 +72,7 @@ exec --no-startup-id nm-applet
 # exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id setcursor
 # exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
-exec_always --no-startup-id numlockx on
+# exec_always --no-startup-id numlockx on
 # exec blueberry-tray
 # exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
 # exec --no-startup-id ~/.local/bin/fastfetch-garuda
@@ -80,7 +81,7 @@ exec_always --no-startup-id numlockx on
 bindsym $super+m bar mode toggle
 
 # start dmenu (a program launcher)
-bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=20'"
+bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans'"
 
 # start rofi (a program launcher) change modus Ctrl + Tab
 bindsym $super+d exec rofi -show run
