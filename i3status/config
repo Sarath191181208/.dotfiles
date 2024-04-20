@@ -29,10 +29,25 @@ general {
 #order += "cpu_temperature 2"
 #order += "cpu_temperature 3"
 #order += "cpu_temperature 4"
-#order += "volume master"
+# order += "volume master"
 #order += "tztime local"
-order += cpu_usage
+# order += cpu_usage
 order += memory
+# order += "tztime local"
+order += "tztime utc"
+#
+tztime utc {
+  format = "%I:%M:%S|"
+  # timezone = "Etc/UTC"
+}
+#
+tztime local {
+# format = "<span color='#ffffff'>%time</span>"
+  # format = " ◔ %H:%M:%S | %a. %d.%m.%Y "
+  # locale = "en_IN.UTF-8"
+  # hide_if_equals_localtime = true
+}
+
 
 cpu_usage {
   format = "CPU_0: %cpu0 CPU_1: %cpu1 CPU_2: %cpu2 CPU_3: %cpu3"
@@ -41,8 +56,8 @@ cpu_usage {
 }
 
 memory {
-  memory_used_method = classical
-  format="Memory: %used/%total"
+  # memory_used_method = classical
+  format="%used"
 }
 
 ipv6 {
