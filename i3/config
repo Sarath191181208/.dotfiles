@@ -237,7 +237,9 @@ bindsym $super+n border normal
 # Start i3bar to display a workspace bar
 
 bar {
-	status_command exec /usr/bin/net-speed.sh
+	# status_command exec /usr/bin/net-speed.sh
+  status_command exec /usr/bin/i3status
+
 	#strip_workspace_numbers yes|no
 	#strip_workspace_name yes|no
 	colors {
