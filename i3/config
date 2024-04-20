@@ -93,8 +93,8 @@ bindsym $super+i exec sudo -E calamares
 bindsym $super+Shift+l exec i3lock -i $lockScreenWallpaper
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5%; exec notify-send 'brightness up 5%'
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5%; exec notify-send 'brightness down 5%'
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1-
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
