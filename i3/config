@@ -382,3 +382,6 @@ mode "$mode_system" {
 
 # swap escape: and capslock 
 exec setxkbmap -option caps:escape
+
+# assign google chrome workspace 2
+assign [class="Google-chrome"] 2
