@@ -235,8 +235,8 @@ bindsym $super+n border normal
 
 # panel
 # Start i3bar to display a workspace bar
-
 bar {
+  mode hide
 	# status_command exec /usr/bin/net-speed.sh
   status_command exec /usr/bin/i3status
 
@@ -254,8 +254,8 @@ bar {
     #binding_mode      #2F343A #903060 #FFFFFF
     # colour of border, background, and text
     }
-
 }
+
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
