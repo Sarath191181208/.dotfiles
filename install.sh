@@ -5,7 +5,7 @@
 $ZSH_CUSTOM=/usr/share/zsh/
 
 installPackage() {
-    sudo apt-get install $1
+    sudo pacman -S $1
 }
 
 mkdirCP(){

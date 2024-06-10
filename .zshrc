@@ -217,6 +217,7 @@ alias cat='bat --style header --style snip --style changes --style header'
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
+alias i="sudo pacman -S "
 alias grubup="sudo update-grub"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias tarnow='tar -acf '
@@ -225,7 +226,6 @@ alias wget='wget -c '
 alias rmpkg="sudo pacman -Rdd"
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias upd='/usr/bin/garuda-update'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

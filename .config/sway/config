@@ -1,30 +1,20 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
-# set modifier
 set $super Mod4
 set $alt Mod1
 
 ################################
 ### Commonly Used Variables: ###
 ################################
-# - Below defined are some of the very common variables that users like to customise
-# - For Keybindings search: Commonly Used Keybindings in this document
-# - Make sure that you give the absolute path to the binary / program / executable
-# - You may specify any additional arguments required by the binary / executable
-
 ### Wallpaper: ###
 # - You need to specify homescreen wallpaper using azote
-
-set $lockScreenWallpaper /usr/share/wallpapers/garuda-wallpapers/Dr460nized\ Honeycomb.png
-
+set $homeScreenWallpaper Downloads/pixelcut-export.jpeg
+set $lockScreenWallpaper Downloads/pixelcut-export.jpeg
 ### Applications: ###
-
-set $preferredTerminalEmulator /usr/bin/i3-sensible-terminal
+#set $preferredTerminalEmulator /usr/bin/xterm
+set $preferredTerminalEmulator /usr/bin/foot
 set $preferredBrowser /usr/bin/google-chrome-stable
 set $preferredFileManager /usr/bin/thunar
 set $preferredMailClient /usr/bin/geary
-set $preferredTextEditor /usr/bin/geany
+set $preferredTextEditor /usr/bin/nvim
 set $preferredScreenCaptureTool /usr/bin/flameshot gui
 
 ###########################################
@@ -46,55 +36,42 @@ bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 # - Terminal can also be started using their individual keybindings
 
 bindsym $super+Return exec $preferredTerminalEmulator
-bindsym $super+b exec $preferredBrowser
-bindsym $super+t exec kitty
+bindsym $super+b exec $preferredBrowser; exec notify-send "Starting Browser" -i /usr/share/icons/misc/google-chrome.svg 
 
 # set font
-font pango: source code pro 10
-
+font pango: source code pro 12
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+# Setting up the wallpaper
+exec swaybg -i $homeScreenWallpaper
+
+# Starting the needed applications
 exec --no-startup-id ~/.fehbg
-# exec --no-startup-id xsettingsd &
-# exec --no-startup-id pasystray
-# exec --no-startup-id conky
-# exec --no-startup-id conky -c ~/.config/conky/conky-shcts
-# exec --no-startup-id copyq
-# exec --no-startup-id dunst
-# exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-# exec --no-startup-id desktop-items
 exec --no-startup-id nm-applet
-# exec --no-startup-id pamac-tray
-# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-# exec --no-startup-id xfce4-power-manager
-# exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id setcursor
-# exec_always --no-startup-id ${HOME}/.config/polybar/launch.sh
-# exec_always --no-startup-id numlockx on
-# exec blueberry-tray
-# exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
-# exec --no-startup-id ~/.local/bin/fastfetch-garuda
+exec blueberry-tray
+exec mako
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+
+# read this: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+# to understand
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # hide/unhide i3status bar
 bindsym $super+m bar mode toggle
 
-# start dmenu (a program launcher)
-bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans'"
-
-# start rofi (a program launcher) change modus Ctrl + Tab
-bindsym $super+d exec rofi -show run
-
-# Garuda Linux install
-bindsym $super+i exec sudo -E calamares
+# start wofi (a program launcher) 
+# bindsym $super+d exec wofi --show --insensitive run
+bindsym $super+d exec wofi --insensitive --show run
 
 # Lock screen
-bindsym $super+Shift+l exec i3lock -i $lockScreenWallpaper
+bindsym $super+Shift+l exec swaylock -i $lockScreenWallpaper
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +1
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 1-
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/scripts/brightness.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/scripts/brightness.sh down
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -107,7 +84,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 #bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 #bindsym XF86AudioMute exec pulseaudio-ctl mute
 
-
 # music control
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
@@ -115,12 +91,10 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 
 # Print screen
-
 bindsym $super+Print --release exec --no-startup-id i3-scrot -w
 bindsym $super+Shift+Print --release exec --no-startup-id i3-scrot -s
 
 # kill focused window
-bindsym $super+c kill
 bindsym $super+q kill
 
 # change focus
@@ -187,6 +161,7 @@ bindsym $super+5 workspace 5
 bindsym $super+6 workspace 6
 bindsym $super+7 workspace 7
 bindsym $super+8 workspace 8
+bindsym $super+9 workspace 9
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace 1
@@ -197,6 +172,7 @@ bindsym $super+Shift+5 move container to workspace 5
 bindsym $super+Shift+6 move container to workspace 6
 bindsym $super+Shift+7 move container to workspace 7
 bindsym $super+Shift+8 move container to workspace 8
+bindsym $super+Shift+9 move container to workspace 9
 
 # Move to workspace with focused container
 bindsym $alt+Shift+1 move container to workspace 1; workspace 1
@@ -207,6 +183,7 @@ bindsym $alt+Shift+5 move container to workspace 5; workspace 5
 bindsym $alt+Shift+6 move container to workspace 6; workspace 6
 bindsym $alt+Shift+7 move container to workspace 7; workspace 7
 bindsym $alt+Shift+8 move container to workspace 8; workspace 8
+bindsym $alt+Shift+9 move container to workspace 9; workspace 9
 
 # reload the configuration file
 bindsym $super+Shift+c reload
@@ -223,7 +200,14 @@ mode "resize" {
         bindsym Down resize grow height 5 px or 5 ppt
         bindsym Up resize shrink height 5 px or 5 ppt
         bindsym Right resize grow width 5 px or 5 ppt
+
+        bindsym l resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym h resize grow width 5 px or 5 ppt
+
         bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 bindsym $super+r mode "resize"
 
@@ -236,24 +220,29 @@ bindsym $super+n border normal
 # panel
 # Start i3bar to display a workspace bar
 bar {
-  mode hide
-	# status_command exec /usr/bin/net-speed.sh
-  status_command exec /usr/bin/i3status
-
-	#strip_workspace_numbers yes|no
-	#strip_workspace_name yes|no
-	colors {
-    background #414257
-    statusline #FFFFFF
-    separator  #8686B6
-
-    focused_workspace  #414257 #616277 #000000
-    active_workspace   #333333 #222222 #FFFFFF
-    inactive_workspace #414257 #414257 #888888
-    urgent_workspace   #2F343A #903060 #FFFFFF
-    #binding_mode      #2F343A #903060 #FFFFFF
-    # colour of border, background, and text
-    }
+   swaybar_command waybar
+    position bottom
+    # hidden_state hide
+    mode hide
+    modifier Mod4
+ #  mode hide
+	# # status_command exec /usr/bin/net-speed.sh
+ #  status_command exec /usr/bin/i3status
+	#
+	# #strip_workspace_numbers yes|no
+	# #strip_workspace_name yes|no
+	# colors {
+ #    background #414257
+ #    statusline #FFFFFF
+ #    separator  #8686B6
+	#
+ #    focused_workspace  #414257 #616277 #000000
+ #    active_workspace   #333333 #222222 #FFFFFF
+ #    inactive_workspace #414257 #414257 #888888
+ #    urgent_workspace   #2F343A #903060 #FFFFFF
+ #    #binding_mode      #2F343A #903060 #FFFFFF
+ #    # colour of border, background, and text
+ #    }
 }
 
 
@@ -268,7 +257,6 @@ for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable border normal
-for_window [class="Garuda Settings Manager"] floating enable border normal
 for_window [title="MuseScore: Play Panel"] floating enable
 for_window [class="azote"] floating enable sticky enable border normal
 for_window [class="Oblogout"] fullscreen enable
@@ -287,10 +275,10 @@ for_window [class="Timeshift-gtk"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [class="keepassxc"] floating enable
-for_window [class="garuda-welcome"] floating enable
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 1
 assign [class=URxvt] 1
 for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol|upgrade2ultimate.sh] floating enable
 for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
@@ -303,7 +291,6 @@ client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background           #2f343f
-
 
 
 #############################
@@ -381,7 +368,18 @@ mode "$mode_system" {
 }
 
 # swap escape: and capslock 
-exec setxkbmap -option caps:escape
+# exec setxkbmap -option caps:escape
+input "type:keyboard" {
+  xkb_options caps:swapescape
+}
+
+input "type:touchpad" {
+  dwt enabled
+  tap enabled
+  middle_emulation enabled
+  natural_scroll enabled
+}
 
 # assign google chrome workspace 2
-assign [class="Google-chrome"] 2
+assign [app_id="google-chrome"] → workspace number 2 
+assign [app_id="google-chrome-stable"] → workspace number 2 
