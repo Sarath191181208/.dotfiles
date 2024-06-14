@@ -9,16 +9,40 @@ export EDITOR=nvim
 export PATH=$PATH:$ORACLE_HOME/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
+# Simple sqlplus function to connect and make command text editing work and history
 function sqlplus2 {
         socat READLINE,history=$HOME/.sqlplus_history EXEC:"$ORACLE_HOME/bin/sqlplus $(echo $@ | sed 's/\([\:]\)/\\\1/g')",pty,setsid,ctty
         status=$?
 }
 
-eval "$(starship init zsh)"
-function set_win_title(){
-    echo -ne "\033]0; $USER@$HOST:${PWD/$HOME/~} \007"
+# fn to use fvm flutter if .fvm directory exists
+function fvm_flutter {
+    if [ -d ".fvm" ]; then
+      fvm flutter $@
+    else
+      flutter $@
+    fi 
 }
-precmd_functions+=(set_win_title)
+
+# fn to use fvm dart if .fvm directory exists
+function fvm_dart {
+    if [ -d ".fvm" ]; then
+      fvm dart $@
+    else
+      dart $@
+    fi 
+}
+
+# alias to use flutter and dart and respect fvm
+alias flutter=fvm_flutter
+alias dart=fvm_dart
+
+# Configuring the prompt
+eval "$(starship init zsh)"
+# function set_win_title(){
+#     echo -ne "\033]0; $USER@$HOST:${PWD/$HOME/~} \007"
+# }
+# precmd_functions+=(set_win_title)
 
 
 ## Plugins section: Enable fish style features
@@ -234,13 +258,14 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias grep='ugrep --color=auto'
-alias fgrep='ugrep -F --color=auto'
-alias egrep='ugrep -E --color=auto'
+alias grep='rg --color=auto'
+alias fgrep='rg -F --color=auto'
+alias egrep='rg -E --color=auto'
 alias hw='hwinfo --short'                          # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages according to size in MB (expac must be installed)
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 alias ip='ip -color'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/.git/ --work-tree=$HOME/.dotfiles/'
 
 # Get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -249,9 +274,6 @@ alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Help people new to Arch
-alias apt='man pacman'
-alias apt-get='man pacman'
-alias please='sudo'
 alias tb='nc termbin.com 9999'
 alias helpme='cht.sh --shell'
 alias pacdiff='sudo -H DIFFPROG=meld pacdiff'
@@ -274,3 +296,9 @@ eval "$(mcfly init zsh)"
 
 ## Run neofetch
 # neofetch
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /home/sarath/.dart-cli-completion/zsh-config.zsh ]] && . /home/sarath/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
