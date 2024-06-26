@@ -6,7 +6,7 @@ set $alt Mod1
 ################################
 ### Wallpaper: ###
 # - You need to specify homescreen wallpaper using azote
-set $homeScreenWallpaper Downloads/pixelcut-export.jpeg
+set $homeScreenWallpaper Downloads/Wallpapers/dabi-5120x2880-11232.jpg
 set $lockScreenWallpaper Downloads/pixelcut-export.jpeg
 ### Applications: ###
 #set $preferredTerminalEmulator /usr/bin/xterm
