@@ -7,25 +7,25 @@
 }
 
 window#waybar {
-  background: #1e1d2d;
-  border-top: #242330;
+  /* background: #282a36; */
   /* background: rgba(30, 29, 45, 0.9); */
+  background: #04041e;
 }
 
 /*-----module groups----*/
 .modules-right {
-  background-color: #2b2a40;
+  background-color: #0e0e27;
   margin: 2px 10px 0 0;
 }
 
 .modules-center {
-  background-color: #2b2a40;
+  background-color: #0e0e27;
   margin: 2px 0 0 0;
 }
 
 .modules-left {
   margin: 2px 0 0 5px;
-  background-color: #1e293b;
+  background-color: #0e0e27;
 }
 
 /*-----modules indv----*/
@@ -41,7 +41,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  background-color: #475569;
+  background-color: #232339;
 }
 
 #clock,
