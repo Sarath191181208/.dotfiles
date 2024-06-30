@@ -1,5 +1,5 @@
 require "nvchad.mappings"
----@type MappingsTable
+
 local M = {}
 
 M.general = {
@@ -7,6 +7,9 @@ M.general = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<leader>d"] = { '"_d', "delete without yanking" },
     ["<leader>p"] = { '[["_dP]]', "paste the text without copying " },
+
+    -- some lsp keybinds 
+    ["<leader>lf"] = { vim.diagnostic.open_float, "Open float diagnostics" },
 
     -- sending tmux commands
     ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", "Window left" },
@@ -52,7 +55,7 @@ M.gitsigns = {
 for _, map in pairs(M) do
   for mode, mode_maps in pairs(map) do
     for key, value in pairs(mode_maps) do
-      local keymap = mode .. key
+      -- local keymap = mode .. key
       local desc = value[2]
       local opts = value.opts or {}
       local cmd = value[1]
