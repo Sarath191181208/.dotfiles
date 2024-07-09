@@ -2,6 +2,10 @@ require "nvchad.mappings"
 
 local M = {}
 
+-- Remove the split terminal keybinds
+vim.keymap.del({ "n" }, "<leader>h")
+vim.keymap.del({ "n" }, "<leader>v")
+
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -40,14 +44,43 @@ M.telescope = {
   },
 }
 
--- require("gitsigns")
+local gitsigns = require "gitsigns"
 
 -- more keybinds!
 M.gitsigns = {
   n = {
-    ["<leader>gsh"] = { "<cmd> Gitsigns stage_hunk <CR>", "Stage hunk" },
-    ["<leader>gus"] = { "<cmd> Gitsigns undo_stage_hunk <CR>", "Undo stage hunk" },
-    ["<leader>gub"] = { "<cmd> Gitsigns reset_buffer <CR>", "Undo stage buffer" },
+    ["<leader>hb"] = {
+      function()
+        gitsigns.blame_line { full = true }
+      end,
+    },
+    ["<leader>hD"] = {
+      function()
+        gitsigns.diffthis "~"
+      end,
+    },
+    ["<leader>hd"] = { gitsigns.diffthis },
+    ["<leader>hp"] = { gitsigns.preview_hunk },
+    ["<leader>hR"] = { gitsigns.reset_buffer },
+    ["<leader>hr"] = { gitsigns.reset_hunk },
+    ["<leader>hS"] = { gitsigns.stage_buffer },
+    ["<leader>hs"] = { gitsigns.stage_hunk },
+    ["<leader>hu"] = { gitsigns.undo_stage_hunk },
+    ["<leader>tb"] = { gitsigns.toggle_current_line_blame },
+    ["<leader>td"] = { gitsigns.toggle_deleted },
+  },
+
+  v = {
+    ["<leader>hr"] = {
+      function()
+        gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+      end,
+    },
+    ["<leader>hs"] = {
+      function()
+        gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+      end,
+    },
   },
 }
 
