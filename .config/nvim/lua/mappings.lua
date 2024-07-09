@@ -53,21 +53,23 @@ M.gitsigns = {
       function()
         gitsigns.blame_line { full = true }
       end,
+      "Blame Full line",
     },
     ["<leader>hD"] = {
       function()
         gitsigns.diffthis "~"
       end,
+      "show git diff this entire file",
     },
-    ["<leader>hd"] = { gitsigns.diffthis },
-    ["<leader>hp"] = { gitsigns.preview_hunk },
-    ["<leader>hR"] = { gitsigns.reset_buffer },
-    ["<leader>hr"] = { gitsigns.reset_hunk },
-    ["<leader>hS"] = { gitsigns.stage_buffer },
-    ["<leader>hs"] = { gitsigns.stage_hunk },
-    ["<leader>hu"] = { gitsigns.undo_stage_hunk },
-    ["<leader>tb"] = { gitsigns.toggle_current_line_blame },
-    ["<leader>td"] = { gitsigns.toggle_deleted },
+    ["<leader>hd"] = { gitsigns.diffthis, "show git diff this hunk" },
+    ["<leader>hp"] = { gitsigns.preview_hunk, "preview hunk" },
+    ["<leader>hR"] = { gitsigns.reset_buffer, "reset buffer" },
+    ["<leader>hr"] = { gitsigns.reset_hunk, "reset hunk" },
+    ["<leader>hS"] = { gitsigns.stage_buffer, "stage buffer" },
+    ["<leader>hs"] = { gitsigns.stage_hunk, "stage hunk" },
+    ["<leader>hu"] = { gitsigns.undo_stage_hunk, "undo_stage hunk" },
+    ["<leader>tb"] = { gitsigns.toggle_current_line_blame, "toggle current line blame" },
+    ["<leader>td"] = { gitsigns.toggle_deleted, "toggle deleted" },
   },
 
   v = {
@@ -75,11 +77,13 @@ M.gitsigns = {
       function()
         gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
       end,
+      "reset hunk",
     },
     ["<leader>hs"] = {
       function()
         gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
       end,
+      "stage hunk",
     },
   },
 }
