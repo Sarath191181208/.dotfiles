@@ -8,7 +8,7 @@ M.general = {
     ["<leader>d"] = { '"_d', "delete without yanking" },
     ["<leader>p"] = { '[["_dP]]', "paste the text without copying " },
 
-    -- some lsp keybinds 
+    -- some lsp keybinds
     ["<leader>lf"] = { vim.diagnostic.open_float, "Open float diagnostics" },
 
     -- sending tmux commands
@@ -18,7 +18,7 @@ M.general = {
     ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", "Window right" },
 
     -- sending rest api commands
-    ["<leader>rr"] = {"<cmd>Rest run<cr>", "Run request under the cursor"}
+    ["<leader>rr"] = { "<cmd>Rest run<cr>", "Run request under the cursor" },
     -- {
     --   "<leader>rl", "<cmd>Rest run last<cr>", "Re-run latest request",
     -- },
@@ -51,7 +51,7 @@ M.gitsigns = {
   },
 }
 
--- iterate the map  and use vim.keymap.set 
+-- iterate the map  and use vim.keymap.set
 for _, map in pairs(M) do
   for mode, mode_maps in pairs(map) do
     for key, value in pairs(mode_maps) do
@@ -59,7 +59,7 @@ for _, map in pairs(M) do
       local desc = value[2]
       local opts = value.opts or {}
       local cmd = value[1]
-      vim.keymap.set(mode, key, cmd, { desc = desc, unpack(opts)})
+      vim.keymap.set(mode, key, cmd, { desc = desc, unpack(opts) })
     end
   end
 end
