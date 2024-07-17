@@ -37,6 +37,7 @@ bindsym Print exec --no-startup-id $preferredScreenCaptureTool
 
 bindsym $super+Return exec $preferredTerminalEmulator
 bindsym $super+b exec $preferredBrowser; exec notify-send "Starting Browser" -i /usr/share/icons/misc/google-chrome.svg 
+bindsym $super+Shift+s exec sway-screenshot -m region
 
 # set font
 font pango: source code pro 12
@@ -133,7 +134,7 @@ bindsym $super+space floating toggle
 bindsym $super+Shift+space focus mode_toggle
 
 # toggle sticky
-bindsym $super+Shift+s sticky toggle
+# bindsym $super+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $super+a focus parent
