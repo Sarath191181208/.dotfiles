@@ -22,6 +22,17 @@ function fvm_dart {
     fi 
 }
 
+# cd and runs tmux after cd 
+function cdt {
+  cd "$@"  # Change directory with all arguments passed
+  local tmux_file=".tmux"
+  
+  # Check if the .tmux file exists in the current directory
+  if [ -f "$tmux_file" ]; then
+    source "./$tmux_file"  # Source (execute) .tmux file
+  fi
+}
+
 # alias to use flutter and dart and respect fvm
 alias flutter=fvm_flutter
 alias dart=fvm_dart
