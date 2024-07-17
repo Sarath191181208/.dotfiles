@@ -15,8 +15,8 @@ snippet docker
 	# Check if Docker is running
 	if ! docker info &> /dev/null
 	then
-			printf "Docker is not running. Exiting..."
-			exit 1
+    printf "Docker( ) is not running."
+    sudo systemctl start docker   
 	fi
 
 snippet tmux
