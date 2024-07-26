@@ -122,25 +122,25 @@ local plugins = {
   },
   {
     "tpope/vim-dadbod",
-    event = "VeryLazy"
+    event = "VeryLazy",
   },
   {
     "kristijanhusak/vim-dadbod-ui",
   },
   {
-    "kristijanhusak/vim-dadbod-completion"
+    "kristijanhusak/vim-dadbod-completion",
   },
   {
     "christoomey/vim-tmux-navigator",
-    lazy = false
+    lazy = false,
   },
   {
     "vhyrro/luarocks.nvim",
     priority = 1000,
     config = true,
     opts = {
-      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-    }
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
+    },
   },
   {
     "rest-nvim/rest.nvim",
@@ -148,6 +148,12 @@ local plugins = {
     dependencies = { "luarocks.nvim" },
     config = function()
       require("rest-nvim").setup()
+    end,
+  },
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup {}
     end,
   },
 }
