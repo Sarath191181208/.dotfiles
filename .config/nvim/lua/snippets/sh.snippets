@@ -21,11 +21,11 @@ snippet docker
 
 snippet tmux
 
-	SESSIONNAME="${0:\${pwd}}"
+	SESSIONNAME=$(basename "$(pwd)")
 
 	# check for session 
 	tmux has-session -t \$SESSIONNAME &> /dev/null
-	if  \$? != 0 
+	if [ $? -ne 0 ];
 	 then
 		# start the new session 
 		tmux new-session -d -s \$SESSIONNAME
