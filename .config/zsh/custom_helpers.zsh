@@ -22,6 +22,21 @@ function fvm_dart {
     fi 
 }
 
+# fn to use pipenv insted of pip if Pipenv
+function pipenv_alt() {
+    if [ "$1" = "i" ]; then
+        set -- install "${@:2}"
+    fi
+
+    if is_pipenv_venv || [ -f "Pipfile" ]; then
+        # pipenv $@
+        echo "pipenv $*"
+    else
+        # pip $@
+        echo "pip $*"
+    fi
+}
+
 # cd and runs tmux after cd 
 function cdt {
   cd "$@"  # Change directory with all arguments passed
@@ -36,6 +51,18 @@ function cdt {
 # alias to use flutter and dart and respect fvm
 alias flutter=fvm_flutter
 alias dart=fvm_dart
+alias pip=pipenv_alt
 
 # FVM and Dart completion script
 [[ -f /home/sarath/.dart-cli-completion/zsh-config.zsh ]] && . /home/sarath/.dart-cli-completion/zsh-config.zsh || true
+
+is_pipenv_venv() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        if echo "$VIRTUAL_ENV" | grep -q 'virtualenvs'; then
+            return 0  # True: The path contains 'pipenv'
+        else
+            return 1  # False: The path does not contain 'pipenv'
+        fi
+    fi
+    return 1  # No virtual environment is activated
+}
