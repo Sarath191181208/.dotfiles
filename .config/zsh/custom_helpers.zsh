@@ -29,11 +29,9 @@ function pipenv_alt() {
     fi
 
     if is_pipenv_venv || [ -f "Pipfile" ]; then
-        # pipenv $@
-        echo "pipenv $*"
+        pipenv $@
     else
-        # pip $@
-        echo "pip $*"
+        pip $@
     fi
 }
 
