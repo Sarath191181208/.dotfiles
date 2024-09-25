@@ -9,7 +9,7 @@ function fvm_flutter {
     if [ -d ".fvm" ]; then
       fvm flutter $@
     else
-      flutter $@
+      command flutter $@
     fi 
 }
 
@@ -18,7 +18,7 @@ function fvm_dart {
     if [ -d ".fvm" ]; then
       fvm dart $@
     else
-      dart $@
+      command dart $@
     fi 
 }
 
@@ -31,7 +31,7 @@ function pipenv_alt() {
     if is_pipenv_venv || [ -f "Pipfile" ]; then
         pipenv $@
     else
-        pip $@
+        command pip $@
     fi
 }
 
