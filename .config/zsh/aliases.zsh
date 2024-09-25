@@ -57,8 +57,20 @@ alias jctl="journalctl -p 3 -xb"
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+
+# terraform alias 
+alias tf="terraform"
+
 # alias to use flutter and dart and respect fvm
 alias flutter=fvm_flutter
 alias dart=fvm_dart
 alias pip=pipenv_alt
 
+# alias to activate virtualenv on cd
+cd(){
+  z "$@" && activate_venv_on_cd "$PWD"
+}
+
+cdi(){
+  zi "$@" && activate_venv_on_cd "$PWD"
+}

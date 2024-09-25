@@ -46,10 +46,51 @@ function cdt {
   fi
 }
 
-# alias to use flutter and dart and respect fvm
-alias flutter=fvm_flutter
-alias dart=fvm_dart
-alias pip=pipenv_alt
+
+# venv cheker in cd
+function activate_venv_on_cd() {
+    # Define the base Projects directory, virtualenv folder name, and Pipfile
+    PROJECTS_DIR="$HOME/Projects"
+    VENV_DIR="venv"
+    PIPFILE="Pipfile"
+
+    # Return early if the directory is not in ~/Projects
+    if [[ "$PWD" != "$PROJECTS_DIR"* ]]; then
+        return
+    fi
+
+    # If Pipfile exists, ask to activate the pipenv environment
+    if [[ -f "$PWD/$PIPFILE" ]]; then
+        echo "Pipfile found in $PWD."
+        echo -n "Do you want to activate the pipenv environment? (y/n): "
+        read choice
+        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+            echo "Activating pipenv environment..."
+            pipenv shell
+        else
+            echo "Skipping pipenv environment activation."
+        fi
+        return
+    fi
+
+    # If venv directory exists, ask to activate the virtual environment
+    if [[ -d "$PWD/$VENV_DIR" ]]; then
+        echo "Virtual environment (venv) found in $PWD."
+        echo -n "Do you want to activate the virtual environment? (y/n): "
+        read choice
+        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+            if [[ -f "$PWD/$VENV_DIR/bin/activate" ]]; then
+                echo "Activating virtual environment..."
+                source "$PWD/$VENV_DIR/bin/activate"
+            else
+                echo "Error: No activation script found in $PWD/$VENV_DIR."
+            fi
+        else
+            echo "Skipping virtual environment activation."
+        fi
+        return
+    fi
+}
 
 # FVM and Dart completion script
 [[ -f /home/sarath/.dart-cli-completion/zsh-config.zsh ]] && . /home/sarath/.dart-cli-completion/zsh-config.zsh || true
