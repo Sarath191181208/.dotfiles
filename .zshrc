@@ -23,11 +23,6 @@ source ~/.config/zsh/custom_helpers.zsh
 source ~/.config/zsh/options.zsh
 source ~/.config/zsh/plugins.zsh
 
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
-
-## Run neofetch
-# neofetch
-
-
