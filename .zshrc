@@ -16,6 +16,7 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_RESULTS_SORT=LAST_RUN
 
 
+source ~/.config/zsh/colors.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/bindings.zsh
 source ~/.config/zsh/completion.zsh

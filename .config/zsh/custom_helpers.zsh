@@ -35,17 +35,21 @@ function pipenv_alt() {
     fi
 }
 
-# cd and runs tmux after cd 
-function cdt {
-  cd "$@"  # Change directory with all arguments passed
+# runs the tmux file
+function activate_tmux_on_cd {
   local tmux_file=".tmux"
   
-  # Check if the .tmux file exists in the current directory
-  if [ -f "$tmux_file" ]; then
-    source "./$tmux_file"  # Source (execute) .tmux file
+  # if no .tmux return
+  if [ ! -f "$tmux_file" ]; then
+    return
   fi
-}
 
+  if __ask_y_n "Activate $(clr "\`tmux\`" CYAN)?" "y"; then 
+    source "./$tmux_file"  # Source (execute) .tmux file
+    return 0
+  fi
+
+}
 
 # venv cheker in cd
 function activate_venv_on_cd() {
@@ -61,34 +65,22 @@ function activate_venv_on_cd() {
 
     # If Pipfile exists, ask to activate the pipenv environment
     if [[ -f "$PWD/$PIPFILE" ]]; then
-        echo "Pipfile found in $PWD."
-        echo -n "Do you want to activate the pipenv environment? (y/n): "
-        read choice
-        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-            echo "Activating pipenv environment..."
-            pipenv shell
-        else
-            echo "Skipping pipenv environment activation."
-        fi
-        return
+      if __ask_y_n "Activate $(clr "\`venv\`" CYAN)?" "y"; then 
+        pipenv shell
+        return 0
+      else
+        return 0
+      fi
     fi
 
     # If venv directory exists, ask to activate the virtual environment
     if [[ -d "$PWD/$VENV_DIR" ]]; then
-        echo "Virtual environment (venv) found in $PWD."
-        echo -n "Do you want to activate the virtual environment? (y/n): "
-        read choice
-        if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
-            if [[ -f "$PWD/$VENV_DIR/bin/activate" ]]; then
-                echo "Activating virtual environment..."
-                source "$PWD/$VENV_DIR/bin/activate"
-            else
-                echo "Error: No activation script found in $PWD/$VENV_DIR."
-            fi
-        else
-            echo "Skipping virtual environment activation."
-        fi
-        return
+      if __ask_y_n "Activate $(clr "\`venv\`" CYAN)?" "y"; then 
+        source "$PWD/$VENV_DIR/bin/activate"
+        return 0
+      else
+        return 0
+      fi
     fi
 }
 
@@ -104,4 +96,29 @@ is_pipenv_venv() {
         fi
     fi
     return 1  # No virtual environment is activated
+}
+
+# Function to ask a yes or no question
+function __ask_y_n() {
+    local prompt="$1"
+    local default="$2"
+    
+    # Default to "y" if not specified
+    if [[ -z "$default" ]]; then
+        default="y"
+    fi
+    
+    # Prompt the user
+    while true; do
+        echo -n "$prompt (y/n) [${default}]? "
+        read response
+
+        # Set response to default if empty
+        response=${response:-$default}
+        case "$response" in
+            [yY]*) return 0 ;;  # Yes
+            [nN]*) return 1 ;;  # No
+            *) echo "Please answer 'y' or 'n'." ;;  # Invalid response
+        esac
+    done
 }

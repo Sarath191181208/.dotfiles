@@ -68,9 +68,9 @@ alias pip=pipenv_alt
 
 # alias to activate virtualenv on cd
 cd(){
-  z "$@" && activate_venv_on_cd "$PWD"
+  z "$@" && activate_venv_on_cd "$PWD" && activate_tmux_on_cd
 }
 
 cdi(){
-  zi "$@" && activate_venv_on_cd "$PWD"
+  zi "$@" && activate_venv_on_cd "$PWD" && activate_tmux_on_cd
 }
