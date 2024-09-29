@@ -24,15 +24,16 @@ function fvm_dart {
 
 # fn to use pipenv insted of pip if Pipenv
 function pipenv_alt() {
-    if [ "$1" = "i" ]; then
-        set -- install "${@:2}"
-    fi
+  # If the first argument is "i", replace it with "install" 
+  if [ "$1" = "i" ]; then
+      set -- install "${@:2}"
+  fi
 
-    if is_pipenv_venv || [ -f "Pipfile" ]; then
-        pipenv $@
-    else
-        command pip $@
-    fi
+  if is_pipenv_venv || [ -f "Pipfile" ]; then
+      pipenv $@
+  else
+      command pip $@
+  fi
 }
 
 # runs the tmux file
