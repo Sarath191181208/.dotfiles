@@ -67,7 +67,7 @@ function activate_venv_on_cd() {
     # If Pipfile exists, ask to activate the pipenv environment
     if [[ -f "$PWD/$PIPFILE" ]]; then
       if __ask_y_n "Activate $(clr "\`venv\`" CYAN)?" "y"; then 
-        pipenv shell
+        source "$(pipenv --venv)/bin/activate"
         return 0
       else
         return 0
