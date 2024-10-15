@@ -372,7 +372,7 @@ mode "$mode_system" {
 # swap escape: and capslock 
 # exec setxkbmap -option caps:escape
 input "type:keyboard" {
-  xkb_options caps:swapescape
+  # xkb_options caps:swapescape
 }
 
 input "type:touchpad" {
