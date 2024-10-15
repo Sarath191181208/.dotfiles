@@ -5,7 +5,7 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
     /* "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"], */
-    "modules-right": ["tray","custom/screenshot","bluetooth", "network",  "memory", "pulseaudio", "custom/power"],
+    "modules-right": ["tray","custom/screenshot","bluetooth", "network", "battery" ,  "memory", "pulseaudio", "custom/power"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -79,5 +79,19 @@
     "tooltip": true,
     "tooltip-format": "sway-screenshot -m region",
     "on-click": "sway-screenshot -m region"
-  }
+  },
+  "battery": {
+    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}h{M}m",
+    "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+    "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged",
+    "interval": 30,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "tooltip": false,
+    "on-click": "2"
+  },
 }
