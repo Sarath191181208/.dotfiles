@@ -52,6 +52,10 @@ function activate_tmux_on_cd {
 
 }
 
+function crackme() {
+  bash /home/sarath/.config/zsh/scripts/crackme.sh "$1"
+}
+
 # venv cheker in cd
 function activate_venv_on_cd() {
     # Define the base Projects directory, virtualenv folder name, and Pipfile
