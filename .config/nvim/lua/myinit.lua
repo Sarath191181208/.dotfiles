@@ -10,3 +10,4 @@ vim.o.wrap = false
 vim.opt.showmode = false
 -- vim.o.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
 -- vim.g.copilot_assume_mapped = true
+

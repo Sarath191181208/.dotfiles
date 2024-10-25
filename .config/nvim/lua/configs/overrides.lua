@@ -36,7 +36,7 @@ M.cmp = function()
     },
     -- command = "lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })",
     callback = function()
-      cmp.setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+      cmp.setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } })
     end,
   })
 
@@ -147,3 +147,4 @@ M.auto_session = {
 }
 
 return M
+
