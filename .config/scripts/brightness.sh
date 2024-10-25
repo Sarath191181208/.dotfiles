@@ -19,9 +19,9 @@ send_notification () {
 case $1 in
 up|down)
     if [ "$1" = "up" ]; then
-        brightnessctl s "+1" > /dev/null
+        brightnessctl s "+5%" > /dev/null
     else
-        brightnessctl s "1-" > /dev/null
+        brightnessctl s "5%-" > /dev/null
     fi
     get_brightness
     send_notification
