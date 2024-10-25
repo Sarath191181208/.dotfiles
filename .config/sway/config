@@ -15,7 +15,7 @@ set $preferredBrowser /usr/bin/google-chrome-stable
 set $preferredFileManager /usr/bin/thunar
 set $preferredMailClient /usr/bin/geary
 set $preferredTextEditor /usr/bin/nvim
-set $preferredScreenCaptureTool /usr/bin/flameshot gui
+set $preferredScreenCaptureTool sway-screenshot -m region
 
 ###########################################
 ### Commonly Used Application Keybinds: ###
