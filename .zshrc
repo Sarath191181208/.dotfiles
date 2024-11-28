@@ -9,6 +9,7 @@ export ORACLE_SID=XE
 export EDITOR=nvim
 export PATH=$PATH:$ORACLE_HOME/bin
 export PATH=$PATH:$(go env GOPATH)/bin
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export MCFLY_FUZZY=true
 export MCFLY_RESULTS=20
