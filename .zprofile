@@ -6,7 +6,8 @@
 # ExecStart=-/sbin/agetty -o '-p -f -- \\u' --noclear --autologin sarath %I $TERM
 #
 # Autologin into sway
+export XDG_CURRENT_DESKTOP=sway
 if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec sway
+ exec sway
 fi
 
