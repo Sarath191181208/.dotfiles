@@ -115,3 +115,10 @@ lspconfig.lua_ls.setup {
     Lua = {}
   }
 }
+
+
+lspconfig.dartls.setup {
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
+  -- on_init = nvlsp.on_init,
+}
