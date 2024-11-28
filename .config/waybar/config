@@ -5,7 +5,7 @@
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
     /* "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "custom/power"], */
-    "modules-right": ["tray","custom/screenshot","bluetooth", "network", "battery" ,  "memory", "pulseaudio", "custom/power"],
+    "modules-right": ["tray", "custom/record","custom/screenshot", "bluetooth", "network", "battery" ,  "memory", "pulseaudio"],
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -75,13 +75,21 @@
 		"on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
 	},
   "custom/screenshot":{
-    "format": " ",
+    "format": " ",
     "tooltip": true,
     "tooltip-format": "sway-screenshot -m region",
-    "on-click": "sway-screenshot -m region"
+    "on-click": "sway-screenshot -m region -o ~/Pictures/screenshots"
+  },
+  "custom/record": {
+      "format": "● ",
+      "tooltip": true,
+      "tooltip-format": "wf-recorder -g \"$(slurp)\"",
+      "on-click": "wf-recorder -g \"$(slurp)\" --file=/home/sarath/recordings/\"$(date +'%Y-%m-%d_%H-%M-%S')\".mp4",
+      "on-right-click": "pkill -SIGINT wf-recorder"
   },
   "battery": {
-    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+    // "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+    "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}%",
     "format-icons": ["", "", "", "", ""],
     "format-time": "{H}h{M}m",
     "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",

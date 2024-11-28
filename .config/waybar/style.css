@@ -1,15 +1,25 @@
 * {
   border: none;
-  font-family: Font Awesome, Roboto, Arial, sans-serif;
+  font-family:
+    Font Awesome,
+    Roboto,
+    Arial,
+    sans-serif;
   font-size: 21px;
   /* color: #ffffff; */
   border-radius: 20px;
 }
 
 window#waybar {
-  /* background: #282a36; */
-  /* background: rgba(30, 29, 45, 0.9); */
-  background: #04041e;
+  background-color: transparent;
+}
+
+window#waybar > box {
+  border-radius: 8px;
+  margin: 4px 8px 8px 8px;
+  background-color: #04041e;
+  /*background-color: rgba(32, 32, 32, 0.75);*/
+  box-shadow: 4px 4px 2px 1px #101010;
 }
 
 /*-----module groups----*/
@@ -75,6 +85,15 @@ window#waybar {
   border-radius: 100px;
   margin: 5px 5px;
   padding: 1px 1px 1px 6px;
+}
+
+#custom-record{
+  color:red;
+  font-size: 32px;
+}
+
+#custom-screenshot{
+  padding-right: 1px;
 }
 
 /*-----Indicators----*/
