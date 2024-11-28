@@ -31,10 +31,3 @@ end
 
 
 local nvlsp = require "nvchad.configs.lspconfig"
-
-lspconfig.dartls.setup {
-  cmd = custom_dartls_cmd,
-  on_attach = nvlsp.on_attach,
-  capabilities = nvlsp.capabilities,
-  on_init = nvlsp.on_init,
-}
