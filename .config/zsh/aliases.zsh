@@ -14,6 +14,7 @@ alias cat='bat --style header --style snip --style changes --style header'
 # Common use
 alias i="sudo pacman -S "
 alias iu="sudo pacman -Sy "
+alias start="sudo systemctl start"
 alias grubup="sudo update-grub"
 alias fixpacman="sudo rm /var/lib/pacman/db.lck"
 alias tarnow='tar -acf '
