@@ -24,6 +24,19 @@ M.treesitter = {
   },
 }
 
+M.telescope = {
+  defaults = {
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        prompt_position = "bottom",
+      },
+      height = 0.95,
+      prompt_position = "bottom",
+    },
+  },
+}
+
 M.cmp = function()
   -- setting up dadbod completion
   local cmp = require("cmp")
@@ -147,4 +160,3 @@ M.auto_session = {
 }
 
 return M
-

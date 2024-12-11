@@ -1,5 +1,7 @@
 require "nvchad.mappings"
 
+local telescope_config = require("configs.telescope-config")
+
 local M = {}
 
 -- Remove the split terminal keybinds
@@ -41,6 +43,7 @@ M.nvimtree = {
 M.telescope = {
   n = {
     ["<C-F>"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
+    ["<leader>ff"] = { telescope_config.live_multigrep, "Live grep with file filter" }
   },
 }
 
