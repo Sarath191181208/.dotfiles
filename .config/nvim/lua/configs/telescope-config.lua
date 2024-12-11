@@ -40,7 +40,7 @@ local live_multigrep = function(opts)
 
   pickers.new(opts, {
     debounce = 100,
-    promt_title = "Multigrep",
+    prompt_title = "Grep with glob",
     previewer = conf.grep_previewer(opts),
     finder = finder,
     sorter = sorters.empty()
