@@ -1,0 +1,54 @@
+#|
+    - https://github.com/jtroo/kanata/blob/main/docs/config.adoc
+    - https://github.com/jtroo/kanata/tree/main/cfg_samples
+|#
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  rapid-event-delay 5
+  override-release-on-activation yes
+)
+
+(defvar
+  tap-timeout   100
+  hold-timeout  200
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet 
+)
+
+;; qwerty layer
+(deflayer qwerty
+  grv 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            @rlt rmet 
+)
+
+;; number layer
+(deflayer numbers
+  grv 1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  6    7    8    9    0    y    u    i    o    p    [    ]    \
+  caps 1    2    3    4    5    bspc    rsft    k    l    ;    '    ret
+  lsft z    x    -    =    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            @rlt rmet 
+)
+
+(defalias 
+  num (layer-toggle numbers)
+
+  caps (tap-hold $tap-timeout $hold-timeout esc  lctl) ;; tap: esc  hold: lctl
+  rlt (tap-hold $tap-timeout $hold-timeout ralt @num) ;; tap: ralt hold: lctl
+)
+
+;; converting the copilot key into a ctrl key
+(defchordsv2-experimental
+ (lsft lmet f23) lctl 200 all-released ()
+)
