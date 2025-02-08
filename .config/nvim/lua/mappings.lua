@@ -43,7 +43,7 @@ M.nvimtree = {
 M.telescope = {
   n = {
     ["<C-F>"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
-    ["<leader>ff"] = { telescope_config.live_multigrep, "Live grep with file filter" }
+    ["<leader>fw"] = { telescope_config.live_multigrep, "Live grep with file filter" }
   },
 }
 
