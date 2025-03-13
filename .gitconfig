@@ -7,3 +7,7 @@
 [user]
 	name = Sarath191181208
 	email = vssarathc04@gmail.com
+[alias]
+	graph = log --oneline --graph
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
