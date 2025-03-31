@@ -114,6 +114,9 @@ if [[ -n "${key[Alt-Right]}" ]]; then
 	bindkey -M vicmd "${key[Alt-Right]}" forward-word
 fi
 
+bindkey "^k" up-line-or-history
+bindkey "^j" down-line-or-history
+
 # Enabling editing of multi-line commands in the Vi editor
 autoload -U edit-command-line
 zle -N edit-command-line
