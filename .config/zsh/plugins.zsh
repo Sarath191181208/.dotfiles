@@ -19,7 +19,11 @@ source /usr/share/fzf/completion.zsh
 # Advanced command-not-found hook
 [[ -e /usr/share/doc/find-the-command/ftc.zsh ]] && source /usr/share/doc/find-the-command/ftc.zsh
 
+
+# catpuccin mocha theme for zsh-syntax-highlighting
+source ~/.config/zsh/scripts/catpuccin_mocha-zsh_syntax_highlight.zsh
+
 # setting in zsh-syntax-highlighting for jq command 
-source /home/sarath/.config/zsh/scripts/jq-highlight.zsh
+source ~/.config/zsh/scripts/jq-highlight.zsh
 # Activate the custom jq highlighter
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets jq)
