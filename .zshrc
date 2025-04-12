@@ -3,7 +3,6 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH=$HOME/.local/bin:$PATH
 fi
 
-
 export ORACLE_HOME=/opt/oracle/product/18c/dbhomeXE
 export ORACLE_SID=XE
 export EDITOR=nvim
@@ -15,7 +14,6 @@ export MCFLY_FUZZY=true
 export MCFLY_RESULTS=20
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_RESULTS_SORT=LAST_RUN
-
 
 source ~/.config/zsh/colors.zsh
 source ~/.config/zsh/aliases.zsh
