@@ -26,6 +26,13 @@ bindsym $super+F2 exec $preferredMailClient;focus
 bindsym $super+F3 exec $preferredFileManager;focus
 bindsym $super+F4 exec $preferredTextEditor;focus
 
+
+###########################################
+############## Screen config ##############
+###########################################
+
+output eDP-1 scale 1.5 mode 1920x1080@60Hz
+
 ### Screen Capturing & Print Screen: ###
 
 bindsym $super+F9 exec $preferredScreenCaptureTool
