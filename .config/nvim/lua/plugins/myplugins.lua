@@ -4,7 +4,7 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    opts = overrides.telescope
+    opts = overrides.telescope,
   },
 
   -- override plugin configs
@@ -109,6 +109,16 @@ local plugins = {
     config = function()
       require("neoscroll").setup {}
     end,
+  },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    },
   },
 }
 
