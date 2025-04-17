@@ -73,6 +73,9 @@ M.gitsigns = {
     ["<leader>hu"] = { gitsigns.undo_stage_hunk, "undo_stage hunk" },
     ["<leader>tb"] = { gitsigns.toggle_current_line_blame, "toggle current line blame" },
     ["<leader>td"] = { gitsigns.toggle_deleted, "toggle deleted" },
+
+    ["[h"] = { gitsigns.prev_hunk, "Previous hunk" },
+    ["]h"] = { gitsigns.next_hunk, "Next hunk" },
   },
 
   v = {
