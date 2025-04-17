@@ -20,6 +20,8 @@ jq_operators=(
     split
     tostring
     unique_by
+    to_entries
+    strings
 )
 
 typeset -ga jq_dot
