@@ -120,6 +120,40 @@ local plugins = {
       end,
     },
   },
+  {
+    "sindrets/diffview.nvim",
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        signature = { enabled = false },
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+  },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      -- "ibhagwan/fzf-lua",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      -- configuration goes here
+      description = {
+        position = "right",
+        width = "90%",
+        show_stats = false,
+      },
+    },
+  },
+  { "wakatime/vim-wakatime", lazy = false },
 }
 
 return plugins
